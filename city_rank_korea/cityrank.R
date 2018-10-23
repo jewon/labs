@@ -61,16 +61,22 @@ kcity_com['POP_DIFF'] <- kcity_com$X2017 - kcity_com$X2010
 kcity_com['175', 1] <- "고성군1" # 한국에는 '고성군'이 두 개 있어 이름을 그대로 rowname으로 사용 불가함
 kcity_com['354', 1] <- "고성군2"
 rownames(kcity_com) <- kcity_com$NAME
+# 2010 Q값
 kcity_com['Q_2010'] <- (log(kcity_com['서울특별시', 'X2010'], base = 10) - log(kcity_com[, 'X2010'], base = 10)) / log(kcity_com[, 'RANK_2010'], base = 10)
 kcity_com_2010 <- kcity_com[order(kcity_com$RANK_2010, na.last = TRUE),]
 plot(kcity_com_2010$Q_2010, pch = 16, cex = 0.5)
 abline(h = result['2010'])
 text(kcity_com_2010[c(1:10),'RANK_2010'], kcity_com_2010[c(1:10), 'Q_2010'], kcity_com_2010[c(1:10), 'NAME'], cex = 0.5, pos = 4)
+# 2017 Q값
 kcity_com['Q_2017'] <- (log(kcity_com['서울특별시', 'X2017'], base = 10) - log(kcity_com[, 'X2017'], base = 10)) / log(kcity_com[, 'RANK_2017'], base = 10)
 kcity_com_2017 <- kcity_com[order(kcity_com$RANK_2017, na.last = TRUE),]
 plot(kcity_com_2017$Q_2017, pch = 16, cex = 0.5)
 abline(h = result['2017'])
 abline(h = result['2010'], col = 'gray')
 text(kcity_com_2017[c(1:10),'RANK_2017'], kcity_com_2017[c(1:10), 'Q_2017'], kcity_com_2017[c(1:10), 'NAME'], cex = 0.5, pos = 4)
+# q값 비교 그래프
 plot(kcity_com_2010$Q_2010, pch = 16, cex = 0.5, xlab = "RANK", ylab = "q-value of city")
 points(kcity_com_2017$Q_2017, pch = 16, cex = 0.5, col = 'red')
+# 10~60위 도시 인구규모 비교 그래프
+plot(kcity_com_2010$X2010, pch = 16, cex = 0.5, xlab = "RANK", ylab = "POP", xlim = c(10, 60), ylim = c(0, 1200000))
+points(kcity_com_2017$X2017, pch = 16, cex = 0.5, col = 'red')
