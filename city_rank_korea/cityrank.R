@@ -66,9 +66,11 @@ kcity_com_2010 <- kcity_com[order(kcity_com$RANK_2010, na.last = TRUE),]
 plot(kcity_com_2010$Q_2010, pch = 16, cex = 0.5)
 abline(h = result['2010'])
 text(kcity_com_2010[c(1:10),'RANK_2010'], kcity_com_2010[c(1:10), 'Q_2010'], kcity_com_2010[c(1:10), 'NAME'], cex = 0.5, pos = 4)
-kcity_com['Q_2017'] <- (log(kcity_com['서울특별시', 'X2017'], base = 10) - log(kcity_com[, 'X2017'], base = 10)) / log(kcity_com[, 'RANK_2010'], base = 10)
+kcity_com['Q_2017'] <- (log(kcity_com['서울특별시', 'X2017'], base = 10) - log(kcity_com[, 'X2017'], base = 10)) / log(kcity_com[, 'RANK_2017'], base = 10)
 kcity_com_2017 <- kcity_com[order(kcity_com$RANK_2017, na.last = TRUE),]
 plot(kcity_com_2017$Q_2017, pch = 16, cex = 0.5)
 abline(h = result['2017'])
 abline(h = result['2010'], col = 'gray')
 text(kcity_com_2017[c(1:10),'RANK_2017'], kcity_com_2017[c(1:10), 'Q_2017'], kcity_com_2017[c(1:10), 'NAME'], cex = 0.5, pos = 4)
+plot(kcity_com_2010$Q_2010, pch = 16, cex = 0.5, xlab = "RANK", ylab = "q-value of city")
+points(kcity_com_2017$Q_2017, pch = 16, cex = 0.5, col = 'red')
