@@ -31,4 +31,4 @@ pyramid <- function (dong_name, set_year) {
   ## 해당 지역 전체 인구에 대한 비율로 출력
 }
 
-## ex) pyramic("반포본동", 2017)
+## ex) pyramid("반포본동", 2017)
